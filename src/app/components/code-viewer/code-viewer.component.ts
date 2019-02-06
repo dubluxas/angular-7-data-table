@@ -1,8 +1,8 @@
+
+import {of as observableOf,  Observable ,  forkJoin } from 'rxjs';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { forkJoin } from 'rxjs/observable/forkJoin';
-import 'rxjs/add/observable/of';
+
 
 import * as Highlight from 'highlight.js';
 import { catchError } from 'rxjs/operators';
@@ -38,11 +38,11 @@ export class CodeViewerComponent {
   public toggle(): void {
     if (!this.visibility && this.path.length > 0) {
       const ts = this.http.get(`${this.baseUrl}/${this.path}.ts`, {responseType: 'text'})
-        .pipe(catchError(() => Observable.of('')));
+        .pipe(catchError(() => observableOf('')));
       const html = this.http.get(`${this.baseUrl}/${this.path}.html`, {responseType: 'text'})
-        .pipe(catchError(() => Observable.of('')));
+        .pipe(catchError(() => observableOf('')));
       const css = this.http.get(`${this.baseUrl}/${this.path}.css`, {responseType: 'text'})
-        .pipe(catchError(() => Observable.of('')));
+        .pipe(catchError(() => observableOf('')));
       forkJoin([ts, html, css]).subscribe((results: string[]) => {
         this.tsContent = results[0];
         this.htmlContent = results[1];

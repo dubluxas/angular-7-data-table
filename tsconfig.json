@@ -17,8 +17,11 @@
       "dom"
     ],
     "paths": {
-      "angular5-data-table": ["dist/angular5-data-table"]
-    }
+      "angular5-data-table": [
+        "dist/angular5-data-table"
+      ]
+    },
+    "module": "es2015"
   },
   "exclude": [
     ".ng_build"
