@@ -4,10 +4,24 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+// material
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 // utils
 import { HideDirective } from './utils/hide';
 import { MinPipe } from './utils/min';
 import { PixelConverter } from './utils/px';
+import { NgxPopupDialogModule, PopupDialogService } from 'ngx-popup-dialog';
 // types & tools
 import { DataTableTranslations } from './types/data-table-translations.type';
 import { CellCallback } from './types/cell-callback.type';
@@ -20,6 +34,9 @@ import { DataTableRowComponent } from './components/row/row.component';
 import { DataTableColumnDirective } from './directives/column/column.directive';
 import { DataTableHeaderComponent } from './components/header/header.component';
 import { DataTablePaginationComponent } from './components/pagination/pagination.component';
+import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
+import { FieldFilterChooserPopupDialog } from './components/filter-bar/field-filter-chooser-popup-dialog/field-filter-chooser-popup-dialog';
+import { FieldFilterPopupDialog } from './components/filter-bar/field-filter-popup-dialog/field-filter-popup-dialog';
 
 export {
   DataTableComponent, DataTableColumnDirective, DataTableRowComponent, DataTablePaginationComponent, DataTableHeaderComponent,
@@ -32,11 +49,31 @@ export {
   declarations: [
     DataTableComponent, DataTableColumnDirective,
     DataTableRowComponent, DataTablePaginationComponent, DataTableHeaderComponent,
-    PixelConverter, HideDirective, MinPipe
+    PixelConverter, HideDirective, MinPipe, FilterBarComponent, FieldFilterChooserPopupDialog,
+    FieldFilterPopupDialog
+  ],
+  entryComponents: [
+    FieldFilterChooserPopupDialog,
+    FieldFilterPopupDialog
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    {
+      ngModule: NgxPopupDialogModule,
+      providers: [PopupDialogService]
+    },
+    MatFormFieldModule,
+    MatIconModule,
+    MatDialogModule,
+    MatChipsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatListModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [DataTableComponent, DataTableColumnDirective]
 })

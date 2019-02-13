@@ -1,17 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-// module
-import { DataTableModule } from 'angular5-data-table';
-// demo components
+import { DataTableModule } from 'angular7-data-table';
+
+import { DataTableRoutingModule } from './datatable-routing.module';
 import { DataTableDemo1Component } from './demo1/data-table-demo1';
 import { DataTableDemo2Component } from './demo2/data-table-demo2';
 import { DataTableDemo3Component } from './demo3/data-table-demo3';
 import { DataTableDemo4Component } from './demo4/data-table-demo4';
 import { DataTableDemo5Component } from './demo5/data-table-demo5';
+import { DataTableDemo6Component } from './demo6/data-table-demo6';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
+// module
+// demo components
 // routing
-import { DataTableRoutingModule } from './datatable-routing.module';
 
 @NgModule({
   imports: [
@@ -20,12 +23,16 @@ import { DataTableRoutingModule } from './datatable-routing.module';
     DataTableModule.forRoot(),
     DataTableRoutingModule
   ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ],
   declarations: [
     DataTableDemo1Component,
     DataTableDemo2Component,
     DataTableDemo3Component,
     DataTableDemo4Component,
-    DataTableDemo5Component
+    DataTableDemo5Component,
+    DataTableDemo6Component
   ]
 })
 export class DataTableDemoModule { }

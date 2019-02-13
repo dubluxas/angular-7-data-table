@@ -9,3 +9,5 @@ export { CellCallback } from './types/cell-callback.type';
 export { RowCallback } from './types/row-callback.type';
 export { DataTableTranslations } from './types/data-table-translations.type';
 export { DataTableParams } from './types/data-table-params.type';
+export { FilterableField } from './types/filterable-field.type';
+export { Filter } from './types/filter.type';

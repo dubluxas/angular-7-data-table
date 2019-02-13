@@ -23,7 +23,8 @@ import { defaultTranslations } from '../../types/default-translations.type';
 import { drag } from '../../utils/drag';
 
 import { Subject ,  Subscription } from 'rxjs';
-
+import { FilterableField } from '../../types/filterable-field.type';
+import { Filter } from '../../types/filter.type';
 
 
 let nextId = 0;
@@ -75,6 +76,7 @@ export class DataTableComponent implements DataTableParams, OnInit, AfterContent
   @Input() indexColumnHeader = '';
   @Input() rowColors: RowCallback;
   @Input() rowTooltip: RowCallback;
+  @Input() filterableFields: FilterableField[];
   @Input() selectColumn = false;
   @Input() multiSelect = true;
   @Input() substituteRows = true;
@@ -95,6 +97,10 @@ export class DataTableComponent implements DataTableParams, OnInit, AfterContent
   @Output() rowDoubleClick = new EventEmitter();
   @Output() headerClick = new EventEmitter();
   @Output() cellClick = new EventEmitter();
+  @Output('filterAdded') filterAdded = new EventEmitter<Filter>();
+  @Output('filterRemoved') filterRemoved = new EventEmitter<Filter>();
+  @Output('filterUpdated') filterUpdated = new EventEmitter<{ old: Filter, new: Filter}>();
+  @Output('filterChanged') filterChanged = new EventEmitter<Filter[]>();
   // UI state without input:
   indexColumnVisible: boolean;
   selectColumnVisible: boolean;

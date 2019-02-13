@@ -26,5 +26,30 @@ export const defaultTranslations: DataTableTranslations = {
   nextPage: 'next page',
   lastPage: 'last page',
   loadingText: '{title} table is loading',
-  loadedText: '{title} table loaded'
+  loadedText: '{title} table loaded',
+  addFilter: 'Add filter',
+  searchField: 'Search Field',
+  chooseField: 'Choose field to filter',
+  selectedValueRequired: 'You must select a value',
+  validDateRequired: 'You must enter valid date',
+  valueRequired: 'You must enter a value',
+  numericValueRequired: 'You must enter a numeric value',
+  apply: 'Apply',
+  value: 'Value',
+  date: 'Date',
+  filterOperators: {
+    'lt': '<',
+    'gt': '>',
+    'lte': '<=',
+    'gte': '>=',
+    'eq': '=',
+    'ne': 'not equal to',
+    'contains': 'contains',
+    'not_contains': 'not contains',
+    'starts': 'starts with',
+    'ends': 'ends with',
+    'empty': 'is empty',
+    'true': 'true',
+    'false': 'false'
+  }
 };

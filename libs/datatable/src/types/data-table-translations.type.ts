@@ -1,3 +1,5 @@
+export declare type FilterOperator = 'lt' | 'gt' | 'lte' | 'gte' | 'eq' | 'ne' | 'contains' | 'not_contains' | 'starts' | 'ends' | 'empty' | 'true' | 'false';
+
 export interface DataTableTranslations {
   headerReload?: string;
   headerColumnSelector?: string;
@@ -25,4 +27,15 @@ export interface DataTableTranslations {
   lastPage?: string;
   loadingText?: string;
   loadedText?: string;
+  addFilter?: string;
+  searchField?: string;
+  chooseField?: string;
+  selectedValueRequired?: string;
+  validDateRequired?: string;
+  valueRequired?: string;
+  numericValueRequired?: string;
+  apply?: string;
+  value?: string;
+  date?: string;
+  filterOperators?: { [key in FilterOperator]: string }
 }

@@ -1,8 +1,8 @@
-# Angular 5 DataTable
+# Angular 7 DataTable
 
-*Note*: Originally this was fork of this [package](https://github.com/MIt9/angular-4-data-table).
+*Note*: Originally this was fork of this [package](https://github.com/brunano21/angular-4-data-table).
 
-A simple Angular 5 data table, with built-in solutions for features including:
+A simple Angular 7 data table, with built-in solutions for features including:
 * pagination
 * sorting
 * row selection (single/multi)
@@ -19,10 +19,10 @@ The library is packaged with [`ng-packagr`](https://github.com/dherges/ng-packag
 Furthermore the component is based on Bootstrap v4.0 (*CSS-only*) and Font-Awesome v4.7, hence be sure to include them into your project.
 Most likely you need to install them as dependencies...
 
-```bash 
+```bash
 npm install bootstrap@4.0.0 font-awesome@4.7.0
 ```
-   
+
 ... then you need to include the CSS bundles into .angular-cli.json file as show below.
 ```json
 {
@@ -42,7 +42,7 @@ npm install bootstrap@4.0.0 font-awesome@4.7.0
 ## Installation
 
 ```bash
-npm install angular5-data-table
+npm install angular7-data-table
 ```
 
 ## Usage
@@ -51,7 +51,7 @@ npm install angular5-data-table
 ```ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { DataTableModule } from 'angular5-data-table';
+import { DataTableModule } from 'angular7-data-table';
 
 @NgModule({
   imports: [
@@ -63,7 +63,7 @@ import { DataTableModule } from 'angular5-data-table';
 })
 export class AppModule { }
 ```
-      
+
 ##### 2. Include `<data-table>` and `<data-table-column>` into your component's template.
 ```HTML
 <!-- my.component.template -->
@@ -89,7 +89,7 @@ export class AppModule { }
 </div>
 ```
 
-## API        
+## API
 
 ### data-table
 * `title` (`string` | default: `''`) table's name - it's highly recommend it's set for accessibility reasons as this will provide a better experience when interacting with the component, especially through a SR.
@@ -114,7 +114,7 @@ export class AppModule { }
 * `pageLimits` (`number[]` | default: `[10, 25, 50, 100, 250]`) items per page selector options.
 * `primaryColumn` (`string` | default: first data column) it identifies which columns has be marked as primary. This is an important aspect from an accessibility and SR perspective. If not given, the first column will be the primary column.
 * `page` (`number` | default: `0`) page to load, valid only if pagination is enabled.
-* `limit` (`number` | default: `10`) number of items per page, valid only pagination is enabled. If `limit` value is not a valid (not contained into `pageLimits` array) it will be defaulted to `pageLimits`'s first value. 
+* `limit` (`number` | default: `10`) number of items per page, valid only pagination is enabled. If `limit` value is not a valid (not contained into `pageLimits` array) it will be defaulted to `pageLimits`'s first value.
 * `sortBy` (`string` | default: `''`) column table is sorted by.
 * `sortAsc` (`boolean` | default: `true`) valid only if `sortBy` is not defaulted. Defines the sorting order. If `true` sort is ascending, descending otherwise.
 

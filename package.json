@@ -1,5 +1,5 @@
 {
-  "name": "angular5-datable-demo",
+  "name": "angular7-datable-demo",
   "version": "0.1.1",
   "license": "MIT",
   "private": false,
@@ -11,10 +11,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:docs": "compodoc ./libs -p src/tsconfig.packages.json -s",
-    "build:app": "cpr dist/angular5-data-table src/angualar5-datatable --overwrite && ng build --app packages && rimraf src/angular5-data-table",
-    "build:app:prod": "cpr dist/angular5-data-table src/angular5-data-table --overwrite && ng build --prod --named-chunks=true --app packages && rimraf src/angular5-data-table",
+    "build:app": "cpr dist/angular7-data-table src/angualar7-datatable --overwrite && ng build --app packages && rimraf src/angular7-data-table",
+    "build:app:prod": "cpr dist/angular7-data-table src/angular7-data-table --overwrite && ng build --prod --named-chunks=true --app packages && rimraf src/angular7-data-table",
     "build:libs:datatable": "ng-packagr -p libs/datatable/package.json",
-    "publish:libs:datatable": "npm publish dist/angular5-data-table"
+    "publish:libs:datatable": "npm publish dist/angular7-data-table"
   },
   "dependencies": {
     "@angular/animations": "^7.2.4",
@@ -35,6 +35,7 @@
     "highlight.js": "^9.12.0",
     "lodash-es": "^4.17.4",
     "ngx-md": "^7.1.3",
+    "ngx-popup-dialog": "^1.0.7",
     "popper.js": "^1.14.3",
     "rxjs": "^6.4.0",
     "tslint-angular": "^1.1.1",
@@ -67,6 +68,7 @@
     "rimraf": "^2.6.1",
     "rxjs-tslint": "^0.1.6",
     "ts-node": "~4.1.0",
+    "tsickle": "^0.34.3",
     "tslint": "^5.12.1",
     "typescript": "3.2.4"
   }
