@@ -6,6 +6,8 @@ import { FilterableField } from '../../types/filterable-field.type';
 import { DataTableComponent } from '../table/table.component';
 import { FieldFilterChooserPopupDialog } from './field-filter-chooser-popup-dialog/field-filter-chooser-popup-dialog';
 import { FieldFilterPopupDialog } from './field-filter-popup-dialog/field-filter-popup-dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { PopupDialog } from 'ngx-popup-dialog/lib/popup-dialog/popup-dialog';
 
 interface ChipFieldFilter {
   fieldFilter: Filter;
@@ -17,6 +19,7 @@ interface ChipFieldFilter {
   styleUrls: ['./filter-bar.component.css']
 })
 export class FilterBarComponent implements OnInit {
+  fieldChooserDialogRef: MatDialogRef<PopupDialog>;
   filters: ChipFieldFilter[] = [];
 
   fields: FilterableField[];
@@ -31,6 +34,7 @@ export class FilterBarComponent implements OnInit {
   }
 
   inputFocused(event: Event) {
+    (event.currentTarget as HTMLElement).blur();
     this.openFieldChooserDialog(event.currentTarget);
   }
 
@@ -47,11 +51,11 @@ export class FilterBarComponent implements OnInit {
   }
 
   openFieldChooserDialog(triggeredElement) {
-    const dialogRef = this.popupDialogService.open(
+    if (this.fieldChooserDialogRef) return;
+    this.fieldChooserDialogRef = this.popupDialogService.open(
       FieldFilterChooserPopupDialog,
       triggeredElement,
       {
-        maxHeight: 300,
         coverTriggeringElement: true,
         data: {
           fields: this.fields,
@@ -59,7 +63,8 @@ export class FilterBarComponent implements OnInit {
         }
       });
 
-    dialogRef.afterClosed().subscribe(result => {
+    this.fieldChooserDialogRef.afterClosed().subscribe(result => {
+      this.fieldChooserDialogRef = null;
       if (!result) return;
       const dialogRef = this.openFieldFilterDialog(triggeredElement, { field: result });
       dialogRef.afterClosed().subscribe((result: Filter) => {

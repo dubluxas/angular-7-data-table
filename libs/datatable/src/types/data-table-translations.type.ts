@@ -29,7 +29,6 @@ export interface DataTableTranslations {
   loadedText?: string;
   addFilter?: string;
   searchField?: string;
-  chooseField?: string;
   selectedValueRequired?: string;
   validDateRequired?: string;
   valueRequired?: string;

@@ -1,12 +1,12 @@
 {
   "name": "angular7-data-table",
   "description": "This library contains an Angular7-compatible Datatable component.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "private": false,
   "license": "MIT",
   "repository": "https://github.com/yanivps/angular-7-data-table",
   "dependencies": {
-    "ngx-popup-dialog": "^1.0.7"
+    "ngx-popup-dialog": "^1.0.8"
   },
   "peerDependencies": {
     "@angular/core": "^7.0.0",

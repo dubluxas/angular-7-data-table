@@ -29,7 +29,6 @@ export const defaultTranslations: DataTableTranslations = {
   loadedText: '{title} table loaded',
   addFilter: 'Add filter',
   searchField: 'Search Field',
-  chooseField: 'Choose field to filter',
   selectedValueRequired: 'You must select a value',
   validDateRequired: 'You must enter valid date',
   valueRequired: 'You must enter a value',
