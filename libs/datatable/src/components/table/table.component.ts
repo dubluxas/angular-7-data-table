@@ -77,6 +77,7 @@ export class DataTableComponent implements DataTableParams, OnInit, AfterContent
   @Input() rowColors: RowCallback;
   @Input() rowTooltip: RowCallback;
   @Input() filterableFields: FilterableField[];
+  @Input() filters: Filter[];
   @Input() selectColumn = false;
   @Input() multiSelect = true;
   @Input() substituteRows = true;

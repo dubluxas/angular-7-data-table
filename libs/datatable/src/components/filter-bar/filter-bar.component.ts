@@ -28,6 +28,9 @@ export class FilterBarComponent implements OnInit {
     @Inject(forwardRef(() => DataTableComponent)) public dataTable: DataTableComponent,
     public popupDialogService: PopupDialogService) {
     this.fields = this.dataTable.filterableFields;
+    if (dataTable.filters) {
+      this.filters = dataTable.filters.map(f => { return { fieldFilter: f } });
+    }
   }
 
   ngOnInit() {
