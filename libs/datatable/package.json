@@ -1,7 +1,7 @@
 {
   "name": "angular7-data-table",
   "description": "This library contains an Angular7-compatible Datatable component.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": false,
   "license": "MIT",
   "repository": "https://github.com/yanivps/angular-7-data-table",

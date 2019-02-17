@@ -58,7 +58,7 @@ export class FieldFilterPopupDialog implements OnInit {
     this.selectedOperator = this.data.fieldFilter.operator || this.filterOperators[0];
     this.filterValue = this.dataType == 'date' ? this.toDate(this.data.fieldFilter.value) : this.data.fieldFilter.value;
     if (this.dataType == 'enum') {
-      if (this.data.fieldFilter.value) this.valuesList = this.valuesList.concat(this.data.fieldFilter.value);
+      if (this.data.fieldFilter.value) this.valuesList = this.valuesList.concat(this.data.fieldFilter.value).filter(v => v != null);
       this.isAtleastOneValueSelected = this.valuesList.length != 0;
     }
   }

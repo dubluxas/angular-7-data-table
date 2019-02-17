@@ -9,10 +9,6 @@ import { FieldFilterPopupDialog } from './field-filter-popup-dialog/field-filter
 import { MatDialogRef } from '@angular/material/dialog';
 import { PopupDialog } from 'ngx-popup-dialog/lib/popup-dialog/popup-dialog';
 
-interface ChipFieldFilter {
-  fieldFilter: Filter;
-}
-
 @Component({
   selector: 'filter-bar',
   templateUrl: './filter-bar.component.html',
@@ -20,8 +16,7 @@ interface ChipFieldFilter {
 })
 export class FilterBarComponent implements OnInit {
   fieldChooserDialogRef: MatDialogRef<PopupDialog>;
-  filters: ChipFieldFilter[] = [];
-
+  filters: Filter[] = [];
   fields: FilterableField[];
 
   constructor(
@@ -29,7 +24,7 @@ export class FilterBarComponent implements OnInit {
     public popupDialogService: PopupDialogService) {
     this.fields = this.dataTable.filterableFields;
     if (dataTable.filters) {
-      this.filters = dataTable.filters.map(f => { return { fieldFilter: f } });
+      this.filters = dataTable.filters
     }
   }
 
@@ -41,15 +36,15 @@ export class FilterBarComponent implements OnInit {
     this.openFieldChooserDialog(event.currentTarget);
   }
 
-  chipClicked(event: Event, chipFilter: ChipFieldFilter) {
-    const dialogRef = this.openFieldFilterDialog(event.currentTarget, chipFilter.fieldFilter);
+  chipClicked(event: Event, filter: Filter) {
+    const dialogRef = this.openFieldFilterDialog(event.currentTarget, filter);
     dialogRef.afterClosed().subscribe((result: Filter) => {
       if (!result) return;
-      this.dataTable.filterUpdated.emit({ old: this.convertFilterToEmittedFilter(chipFilter.fieldFilter), new: this.convertFilterToEmittedFilter(result) });
-      let index = this.filters.indexOf(chipFilter)
-      this.filters[index].fieldFilter = result;
-      this.dataTable.filterChanged.emit(this.filters.map(c => this.convertFilterToEmittedFilter(c.fieldFilter)));
-      chipFilter.fieldFilter = result;
+      this.dataTable.filterUpdated.emit({ old: this.convertFilterToEmittedFilter(filter), new: this.convertFilterToEmittedFilter(result) });
+      let index = this.filters.indexOf(filter)
+      this.filters[index] = result;
+      this.dataTable.filterChanged.emit(this.filters.map(c => this.convertFilterToEmittedFilter(c)));
+      filter = result;
     });
   }
 
@@ -72,9 +67,9 @@ export class FilterBarComponent implements OnInit {
       const dialogRef = this.openFieldFilterDialog(triggeredElement, { field: result });
       dialogRef.afterClosed().subscribe((result: Filter) => {
         if (!result) return;
-        this.filters.push({ fieldFilter: result });
+        this.filters.push(result);
         this.dataTable.filterAdded.emit(this.convertFilterToEmittedFilter(result));
-        this.dataTable.filterChanged.emit(this.filters.map(c => this.convertFilterToEmittedFilter(c.fieldFilter)));
+        this.dataTable.filterChanged.emit(this.filters.map(c => this.convertFilterToEmittedFilter(c)));
       });
     });
   }
@@ -94,26 +89,36 @@ export class FilterBarComponent implements OnInit {
     return dialogRef;
   }
 
-  removeFilter(chipFilter: ChipFieldFilter) {
-    const index = this.filters.indexOf(chipFilter);
+  removeFilter(filter: Filter) {
+    const index = this.filters.indexOf(filter);
 
     if (index >= 0) {
       this.filters.splice(index, 1);
-      this.dataTable.filterRemoved.emit(this.convertFilterToEmittedFilter(chipFilter.fieldFilter));
-      this.dataTable.filterChanged.emit(this.filters.map(c => this.convertFilterToEmittedFilter(c.fieldFilter)));
+      this.dataTable.filterRemoved.emit(this.convertFilterToEmittedFilter(filter));
+      this.dataTable.filterChanged.emit(this.filters.map(c => this.convertFilterToEmittedFilter(c)));
     }
   }
 
   formatValue(filter: Filter) {
+    let value = filter.value;
+    if (filter.operator == 'empty') return '';
+
     if (filter.field.dataType == "enum") {
-      return (filter.value as any[]).map(v => typeof v === "string" ? v : v.displayText);
+      value = (filter.value as any[]).map(v => typeof v === "string" ? v : v.displayText);
     }
-    return filter.value;
+
+    if (Array.isArray(value)) {
+      value = value.join(', ');
+    }
+
+    return value;
   }
 
   private convertFilterToEmittedFilter(filter: Filter) {
     // clone the filter and extract values from enum possible options
     let clonedFilter = JSON.parse(JSON.stringify(filter)) as Filter;
+    if (clonedFilter.operator == "empty") return clonedFilter;
+
     if (clonedFilter.field.dataType == "enum") {
       let valuesList = clonedFilter.value;
       for (let i = 0; i < valuesList.length; i++) {
