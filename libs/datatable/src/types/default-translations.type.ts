@@ -36,6 +36,7 @@ export const defaultTranslations: DataTableTranslations = {
   apply: 'Apply',
   value: 'Value',
   date: 'Date',
+  not: 'Not',
   filterOperators: {
     'lt': '<',
     'gt': '>',

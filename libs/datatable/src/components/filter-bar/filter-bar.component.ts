@@ -114,6 +114,14 @@ export class FilterBarComponent implements OnInit {
     return value;
   }
 
+  formatChipDisplayText(filter: Filter) {
+    if (filter.field.dataType == "bool") {
+      return filter.value == false ? `${this.dataTable.labels.not} ${filter.field.header}` : filter.field.header;
+    } else {
+      return `${filter.field.header} ${this.dataTable.labels.filterOperators[filter.operator]} ${this.formatValue(filter)}`
+    }
+  }
+
   private convertFilterToEmittedFilter(filter: Filter) {
     // clone the filter and extract values from enum possible options
     let clonedFilter = JSON.parse(JSON.stringify(filter)) as Filter;

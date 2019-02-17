@@ -31,7 +31,7 @@ export class FieldFilterPopupDialog implements OnInit {
   private static numericOperators = ['lt', 'gt', 'lte', 'gte', 'eq', 'ne', 'empty']
   private static textualOperators = ['contains', 'not_contains', 'starts', 'ends', 'eq', 'ne', 'empty']
   private static  enumOperators = ['eq', 'ne', 'empty']
-  private static  boolOperators = ['true', 'false']
+  private static  boolOperators = ['eq']
   private static ALL_FILTER_OPERATORS = {
     "number" : FieldFilterPopupDialog.numericOperators,
     "date": FieldFilterPopupDialog.numericOperators,
@@ -60,6 +60,9 @@ export class FieldFilterPopupDialog implements OnInit {
     if (this.dataType == 'enum') {
       if (this.data.fieldFilter.value) this.valuesList = this.valuesList.concat(this.data.fieldFilter.value).filter(v => v != null);
       this.isAtleastOneValueSelected = this.valuesList.length != 0;
+    }
+    if (this.dataType == 'bool' && this.filterValue == null) {
+      this.filterValue = true;
     }
   }
 

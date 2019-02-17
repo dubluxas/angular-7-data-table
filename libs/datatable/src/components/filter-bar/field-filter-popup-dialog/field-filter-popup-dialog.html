@@ -31,6 +31,9 @@
         <ng-container *ngIf="dataType == 'enum' && selectedOperator !== 'empty'">
           <ng-container *ngTemplateOutlet="valuesListField; context: {options: data.fieldFilter.field.possibleOptions, form: f}"></ng-container>
         </ng-container>
+        <ng-container *ngIf="dataType == 'bool' && selectedOperator !== 'empty'">
+          <ng-container *ngTemplateOutlet="booleanField"></ng-container>
+        </ng-container>
       </div>
     </div>
     <div class="footer">
@@ -60,6 +63,17 @@
       <div class="py-3">
         <mat-checkbox class="d-block" *ngFor="let option of options" [checked]="isValueChecked(option)" (change)="valueCheckChange(option, $event.checked)">{{getPossibleOptionDisplayText(option)}}</mat-checkbox>
         <mat-error *ngIf="f.submitted && !isAtleastOneValueSelected">{{MUST_SELECT_VALUE_VALIDATION}}</mat-error>
+      </div>
+    </ng-template>
+
+    <ng-template #booleanField>
+      <div class="py-3">
+        <!-- Workaround to focus radio buttons -->
+        <input style="width: 0px; height: 0px;" cdkFocusInitial (focus)="filterValue == false ? radioButtonFalse.focus() : radioButtonTrue.focus()" autocomplete="off" matInput>
+        <mat-radio-group [(ngModel)]="filterValue" name="filterValue">
+          <mat-radio-button #radioButtonTrue class="mr-3" [value]="true"><mat-icon class="mt-1">check</mat-icon></mat-radio-button>
+          <mat-radio-button #radioButtonFalse [value]="false"><mat-icon class="mt-1">close</mat-icon></mat-radio-button>
+        </mat-radio-group>
       </div>
     </ng-template>
 

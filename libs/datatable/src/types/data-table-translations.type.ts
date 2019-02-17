@@ -36,5 +36,6 @@ export interface DataTableTranslations {
   apply?: string;
   value?: string;
   date?: string;
+  not?: string;
   filterOperators?: { [key in FilterOperator]: string }
 }
