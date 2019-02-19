@@ -98,6 +98,7 @@ export class DataTableComponent implements DataTableParams, OnInit, AfterContent
   @Output() rowDoubleClick = new EventEmitter();
   @Output() headerClick = new EventEmitter();
   @Output() cellClick = new EventEmitter();
+  @Output() refreshClick = new EventEmitter();
   @Output('filterAdded') filterAdded = new EventEmitter<Filter>();
   @Output('filterRemoved') filterRemoved = new EventEmitter<Filter>();
   @Output('filterUpdated') filterUpdated = new EventEmitter<{ old: Filter, new: Filter}>();
