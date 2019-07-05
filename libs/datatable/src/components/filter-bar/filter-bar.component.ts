@@ -61,14 +61,15 @@ export class FilterBarComponent implements OnInit {
         }
       });
 
-    this.fieldChooserDialogRef.afterClosed().subscribe(result => {
+    this.fieldChooserDialogRef.afterClosed().subscribe((field: FilterableField) => {
       this.fieldChooserDialogRef = null;
-      if (!result) return;
-      const dialogRef = this.openFieldFilterDialog(triggeredElement, { field: result });
-      dialogRef.afterClosed().subscribe((result: Filter) => {
-        if (!result) return;
-        this.filters.push(result);
-        this.dataTable.filterAdded.emit(this.convertFilterToEmittedFilter(result));
+      if (!field) return;
+      const dialogRef = this.openFieldFilterDialog(triggeredElement, { field: field });
+      dialogRef.afterClosed().subscribe((filter: Filter) => {
+        if (!filter) return;
+
+        this.filters.push(filter);
+        this.dataTable.filterAdded.emit(this.convertFilterToEmittedFilter(filter));
         this.dataTable.filterChanged.emit(this.filters.map(c => this.convertFilterToEmittedFilter(c)));
       });
     });

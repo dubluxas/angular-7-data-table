@@ -89,6 +89,8 @@ export class DataTableComponent implements DataTableParams, OnInit, AfterContent
   @Input() noDataMessage: string;
   @Input() pageLimits: number[] = [10, 25, 50, 100, 250];
   @Input() primaryColumn = '';
+  @Input() tableCssClass = '';
+  @Input() tableContainerCssClass = '';
 
   // reload emitter
   @Output() reload = new EventEmitter();

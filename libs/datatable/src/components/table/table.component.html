@@ -9,8 +9,8 @@
   <data-table-header *ngIf="header"></data-table-header>
   <filter-bar *ngIf="filterableFields && filterableFields.length > 0"></filter-bar>
 
-  <div class="data-table-box">
-    <table class="table data-table" [id]="id">
+  <div class="data-table-box {{tableContainerCssClass}}">
+    <table class="table data-table {{tableCssClass}}" [id]="id">
       <caption class="sr-only" [textContent]="title"></caption>
       <thead>
       <tr>
